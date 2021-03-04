@@ -1,30 +1,40 @@
 <script>
-	export let name;
+  import "bootstrap/dist/css/bootstrap.min.css";
+  import Stories from "./viewStories.svelte";
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<body>
+  <main>
+    <h1>Hacker News</h1>
+    <Stories />
+  </main>
+</body>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+  body {
+    background-color: #f4f4f4;
+  }
+  main {
+    margin: 0 auto;
+  }
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+  h1 {
+    color: #001aff;
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: 100;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  @media (min-width: 640px) {
+    main {
+      max-width: none;
+    }
+  }
+
+  @media screen and (max-width: 645px) {
+    h1 {
+      font-size: 2rem;
+    }
+  }
 </style>
