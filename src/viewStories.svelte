@@ -41,7 +41,7 @@
         <div class="aCard">
           <div class="flexedHeader">
             <a target="_blank" href={detail.url}>{index + 1}. {detail.title} </a>
-            <a target="_blank" class="refURL" href={detail.url}>({detail.url}</a>
+            <a target="_blank" class="refURL" href={detail.url}>({detail.url})</a>
           </div>
           <div class="score">
             <p>
