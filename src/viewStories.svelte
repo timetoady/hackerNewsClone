@@ -17,37 +17,35 @@
     hackerNewsTopStoryUrls.set(urls);
     return urls;
   };
-
   const setStoryInfo = async () => {
     let urls = await getStoryUrls();
     let details = await Promise.all(
       urls.map((url) => fetch(url).then((response) => response.json()))
     );
     hackerNewsDetails.set(details);
-    console.log($hackerNewsDetails);
   };
   onMount(setStoryInfo);
 </script>
 
 <div>
   <h1>Top 30 Stories</h1>
-
   {#await $hackerNewsDetails}
     <div>
       <Spinner color="primary" />
-    </div>
+    
     <p>Awaiting details...</p>
-  {:then storyDetails}
+</div>
+  {:then storyObject}
     <div class="grids">
-      {#each storyDetails as detail, index (detail.id)}
+      {#each storyObject as detail, index (detail.id)}
         <div class="aCard">
           <div class="flexedHeader">
             <a target="_blank" href={detail.url}>{index + 1}. {detail.title} </a>
-            <a target="_blank" class="refURL" href={detail.url}>({detail.url})</a>
+            <a target="_blank" class="refURL" href={detail.url}>({detail.url}</a>
           </div>
           <div class="score">
             <p>
-                Score: {detail.score}
+                Score: {detail.score} | by {detail.by}
             </p>
           </div>
         </div>
@@ -62,8 +60,9 @@
         display: grid;
         grid-template-columns: 1fr; 
         gap: 15px;
-        margin: 0 auto;
+        margin: 0 auto 1rem auto;
         justify-items: center;
+        padding-bottom: 2rem;
     }
     .aCard{
         border: 1px rgba(128, 128, 128, 0.657) solid;
@@ -71,7 +70,7 @@
         width: 80vw;
     }
     .aCard p {
-        margin-top: 0;
+        margin: 0;
     }
   .flexedHeader {
     align-items: left;
@@ -90,9 +89,6 @@
     padding: .25rem;
   }
   @media screen and (max-width: 900px){
-      main{
-          margin: 0 auto;
-      }
      .grids{
          grid-template-columns: 1fr;
      }
@@ -107,6 +103,9 @@
     }
     a, p{
         font-size: .75rem;
+    }
+    .refURL{
+        font-size: .5rem;
     }
   }
 </style>
